@@ -7,6 +7,7 @@ import Header from "./header";
 import Components from "./components";
 import Incidents from "./incidents";
 import Footer from "./footer";
+import Subscribe from "./subscribe";
 
 const Container = styled.div`
   max-width: 1008px;
@@ -60,6 +61,7 @@ export default () => {
         </ComponentsContainer>
         <Incidents loading={incidentsLoading} incidents={incidentsResults} />
         <Footer />
+        <Subscribe />
       </Container>
     </>
   );
