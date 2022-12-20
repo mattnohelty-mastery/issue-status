@@ -40,24 +40,13 @@ export default () => {
   const emailRegex = new RegExp(
     /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/
   );
-  const notify = (type, msg) => {
-    switch (type) {
-      case "error":
-        toast.error(msg);
-        break;
-      case "info":
-      default:
-        toast(msg);
-        break;
-    }
-  };
 
   const [email, setEmail] = useState("");
   const [emailInputError, setEmailInputError] = useState(false);
 
   const validateEmail = () => {
     if (!emailRegex.test(email)) {
-      notify("error", "Please enter a valid email address");
+      toast.error("Please enter a valid email address");
       setEmailInputError(true);
       return false;
     } else {
@@ -66,16 +55,18 @@ export default () => {
     }
   };
 
-  const handleSubscribeClick = async (toSubscribeOrNotToSubscribe) => {
+  const handleSubscribeClick = async (isSubscribe) => {
     if (!validateEmail()) return;
 
-    const endpoint = toSubscribeOrNotToSubscribe ? "subscribe" : "unsubscribe";
+    const resourcePath = isSubscribe ? "subscribe" : "unsubscribe";
     try {
-      const response = await axios.put(`http://localhost:5555/${endpoint}?email=${email}`);
+      const response = await axios.put(
+        `${process.env.REACT_APP_API_BASE_URL}${resourcePath}?email=${email}`
+      );
+      toast.success("Subscription Updated");
       console.log(response);
-      notify("info", "Subscription Updated");
     } catch (err) {
-      notify("error", "error :(");
+      toast.error("error :(");
       console.error(err);
     }
   };
