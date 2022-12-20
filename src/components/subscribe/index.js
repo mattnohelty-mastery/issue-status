@@ -71,7 +71,7 @@ export default () => {
 
     const endpoint = toSubscribeOrNotToSubscribe ? "subscribe" : "unsubscribe";
     try {
-      const response = await axios.get(`/${endpoint}?email=${email}`);
+      const response = await axios.put(`http://localhost:5555/${endpoint}?email=${email}`);
       console.log(response);
       notify("info", "Subscription Updated");
     } catch (err) {
