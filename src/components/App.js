@@ -37,28 +37,30 @@ export default () => {
   ] = useIssues("incident");
 
   return (
-    <Container>
+    <>
       <Header />
-      <ComponentsContainer>
-        <Status
-          loading={componentsLoading || incidentsLoading}
-          error={{
-            hasError: componentsError || incidentsError,
-            errors: { componentsError, incidentsError },
-          }}
-          components={componentsResults}
-          refetch={() => {
-            componentsRefetch();
-            incidentsRefetch();
-          }}
-        />
-        <Components
-          loading={componentsLoading}
-          components={componentsResults}
-        />
-      </ComponentsContainer>
-      <Incidents loading={incidentsLoading} incidents={incidentsResults} />
-      <Footer />
-    </Container>
+      <Container>
+        <ComponentsContainer>
+          <Status
+            loading={componentsLoading || incidentsLoading}
+            error={{
+              hasError: componentsError || incidentsError,
+              errors: { componentsError, incidentsError },
+            }}
+            components={componentsResults}
+            refetch={() => {
+              componentsRefetch();
+              incidentsRefetch();
+            }}
+          />
+          <Components
+            loading={componentsLoading}
+            components={componentsResults}
+          />
+        </ComponentsContainer>
+        <Incidents loading={incidentsLoading} incidents={incidentsResults} />
+        <Footer />
+      </Container>
+    </>
   );
 };
