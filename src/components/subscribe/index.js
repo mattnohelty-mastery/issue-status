@@ -33,7 +33,6 @@ const Button = styled.button`
 const Input = styled.input`
   padding: 0.5em;
   margin: 0.5em;
-  color: "black";
   background: ${(props) => props.inputColor || "white"};
   border: ${(props) => (props.isError ? "1px solid red" : "none")};
   border-radius: 3px;

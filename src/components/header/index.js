@@ -16,6 +16,7 @@ const Logo = styled.img`
 const Title = styled.h1`
   width: 100%;
   color: white;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
   font-weight: normal;
   font-size: 28px;
   align-self: center;
