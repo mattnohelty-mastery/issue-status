@@ -3,6 +3,7 @@ import styled from "styled-components";
 import moment from "moment";
 import ReactMarkdown from "react-markdown";
 import IncidentTimeline from "../incidentTimeline";
+import IncidentEventList from "../incidentEventList";
 
 const Incident = styled.div`
   transition: 0.3s;
@@ -70,7 +71,7 @@ export default ({ incident }) => (
     <Title>{incident.title}</Title>
     <Comment>
       <ReactMarkdown>{incident.body}</ReactMarkdown>
-      <IncidentTimeline incident={incident} />
+      <IncidentEventList incident={incident} />
     </Comment>
   </Incident>
 );
