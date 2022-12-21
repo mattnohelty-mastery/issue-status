@@ -56,8 +56,8 @@ export default () => {
             components={componentsResults}
           />
         </ComponentsContainer>
-        <Incidents loading={incidentsLoading} incidents={incidentsResults} />
         <Chart loading={incidentsLoading} incidents={incidentsResults} />
+        <Incidents loading={incidentsLoading} incidents={incidentsResults} />
         <Footer />
         <Subscribe />
       </Container>

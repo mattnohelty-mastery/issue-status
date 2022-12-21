@@ -26,6 +26,10 @@ const Title = styled.h1`
   line-height: 1.2em;
 `;
 
+const TitlePrime = styled.span`
+  color: #b25d42;
+`;
+
 export default () =>
   process.env.REACT_APP_LOGO || process.env.REACT_APP_NAME ? (
     <Header>
@@ -35,6 +39,8 @@ export default () =>
           alt={process.env.REACT_APP_NAME}
         />
       ) : null}
-      <Title>{process.env.REACT_APP_NAME}</Title>
+      <Title>
+        MasterMind <TitlePrime>Status</TitlePrime>
+      </Title>
     </Header>
   ) : null;

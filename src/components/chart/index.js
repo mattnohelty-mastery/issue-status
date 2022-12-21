@@ -9,9 +9,13 @@ const Container = styled.div`
   max-width: 1040px;
   display: flex;
   flex-direction: column;
+  box-shadow: 0px 0px 33px -32px rgba(0, 0, 0, 0.75);
+  border-radius: 3px;
+  background-color: white;
+  padding: 16px;
 `;
 
-const Title = styled.div`
+const Uptime = styled.div`
   font-size: 24px;
   margin-bottom: 16px;
   display: flex;
@@ -57,9 +61,10 @@ export default ({ loading, incidents }) => {
   };
 
   const [uptime, segments] = process(incidents);
+
   return (
     <Container>
-      <Title>{uptime}% Uptime</Title>
+      <Uptime>{uptime}% Uptime</Uptime>
       {!loading || hasMounted ? (
         <SegmentChart segments={segments} />
       ) : (

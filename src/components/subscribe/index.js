@@ -9,6 +9,10 @@ const FlexBox = styled.div`
   justify-content: center;
   display: flex;
   align-items: center;
+  box-shadow: 0px 0px 33px -32px rgba(0, 0, 0, 0.75);
+  border-radius: 3px;
+  background-color: rgba(255, 255, 255, 0.67);
+  padding: 4px;
 `;
 
 const Label = styled.label`
@@ -34,7 +38,8 @@ const Input = styled.input`
   padding: 0.5em;
   margin: 0.5em;
   background: ${(props) => props.inputColor || "white"};
-  border: ${(props) => (props.isError ? "1px solid red" : "none")};
+  border: ${(props) =>
+    props.isError ? "1px solid red" : "1px solid lightgray"};
   border-radius: 3px;
 `;
 
