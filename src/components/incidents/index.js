@@ -21,12 +21,20 @@ const NoFound = styled.div`
 
 export default ({ loading, incidents }) => {
   const [hasMounted] = useDidMount();
+
+  const sixHoursAgo = new Date().getTime() - 6 * 60 * 60 * 1000;
+  const activeIncidents = incidents.filter(
+    (i) =>
+      i.state.toLowerCase() === "open" ||
+      new Date(i.updated_at).getTime() > sixHoursAgo
+  );
+
   return (
     <Container>
       <Title>Incidents</Title>
       {!loading || hasMounted ? (
-        incidents?.length > 0 ? (
-          incidents?.map((incident) => (
+        activeIncidents?.length > 0 ? (
+          activeIncidents?.map((incident) => (
             <Incident key={incident.id} incident={incident} />
           ))
         ) : (
