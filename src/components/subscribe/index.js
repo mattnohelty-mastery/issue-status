@@ -71,7 +71,8 @@ export default () => {
 
     const endpoint = toSubscribeOrNotToSubscribe ? "subscribe" : "unsubscribe";
     try {
-      const response = await axios.put(`http://localhost:5555/${endpoint}?email=${email}`);
+      const baseUrl = process.env.REACT_APP_NOTIFICATION_SERVICE_BASEURL ?? "http://localhost";
+      const response = await axios.put(`${baseUrl}/${endpoint}?email=${email}`);
       console.log(response);
       notify("info", "Subscription Updated");
     } catch (err) {
