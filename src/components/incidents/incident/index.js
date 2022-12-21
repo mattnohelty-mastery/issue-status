@@ -2,12 +2,13 @@ import React from "react";
 import styled from "styled-components";
 import moment from "moment";
 import ReactMarkdown from "react-markdown";
+import IncidentTimeline from "../incidentTimeline";
 
 const Incident = styled.div`
   transition: 0.3s;
   border-left: 16px solid
     ${(props) =>
-    props.active ? "rgba(177, 177, 177,0.2)" : "rgba(73, 144, 226, 0.2)"};
+      props.active ? "rgba(177, 177, 177,0.2)" : "rgba(73, 144, 226, 0.2)"};
   background-color: white;
   border-radius: 3px;
   padding: 16px;
@@ -69,6 +70,7 @@ export default ({ incident }) => (
     <Title>{incident.title}</Title>
     <Comment>
       <ReactMarkdown>{incident.body}</ReactMarkdown>
+      <IncidentTimeline incident={incident} />
     </Comment>
   </Incident>
 );
