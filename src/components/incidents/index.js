@@ -19,15 +19,15 @@ const NoFound = styled.div`
   margin: 0 8px;
 `;
 
-export default ({ loading, incidents }) => {
+export default ({ loading, incidents, active }) => {
   const [hasMounted] = useDidMount();
   return (
     <Container>
-      <Title>Incidents</Title>
+      <Title>{active ? "Recent " : "Past "}Incidents</Title>
       {!loading || hasMounted ? (
         incidents?.length > 0 ? (
           incidents?.map((incident) => (
-            <Incident key={incident.id} incident={incident} />
+            <Incident key={incident.id} incident={incident} active={true} />
           ))
         ) : (
           <NoFound>No Incidents found.</NoFound>

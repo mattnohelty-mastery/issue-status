@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.css";
 import styled from "styled-components";
 import Status from "./status";
@@ -23,6 +23,29 @@ const ComponentsContainer = styled.div`
   padding: 16px;
 `;
 
+const HistoryList = styled.div`
+  cursor: pointer;
+  margin: 30px;
+`;
+
+const processIncidents = (list) => {
+  const sixHoursAgo = new Date().getTime() - 6 * 60 * 60 * 1000;
+
+  const activeIncidents = [];
+  const inactiveIncidents = [];
+  list.forEach((item) => {
+    if (
+      item.state.toLowerCase() === "open" ||
+      new Date(item.updated_at).getTime() < sixHoursAgo
+    ) {
+      activeIncidents.push(item);
+    } else {
+      inactiveIncidents.push(item);
+    }
+  });
+  return [activeIncidents, inactiveIncidents];
+};
+
 export default () => {
   // loading, errors, results, refetch
   const [
@@ -33,6 +56,11 @@ export default () => {
   ] = useIssues("component");
   const [incidentsLoading, incidentsError, incidentsResults, incidentsRefetch] =
     useIssues("incident");
+
+  const [activeIncidents, inactiveIncidents] =
+    processIncidents(incidentsResults);
+
+  const [showHistory, setShowHistory] = useState(false);
 
   return (
     <>
@@ -57,7 +85,25 @@ export default () => {
           />
         </ComponentsContainer>
         <Chart loading={incidentsLoading} incidents={incidentsResults} />
-        <Incidents loading={incidentsLoading} incidents={incidentsResults} />
+        <Incidents
+          loading={incidentsLoading}
+          incidents={activeIncidents}
+          active={true}
+        />
+        <HistoryList onClick={() => setShowHistory(!showHistory)}>
+          {showHistory ? (
+            <>&larr; Hide Incident History</>
+          ) : (
+            <>Show Incident History &rarr;</>
+          )}
+        </HistoryList>
+        {showHistory && (
+          <Incidents
+            loading={incidentsLoading}
+            incidents={inactiveIncidents}
+            active={false}
+          />
+        )}
         <Footer />
         <Subscribe />
       </Container>

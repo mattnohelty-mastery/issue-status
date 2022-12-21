@@ -75,9 +75,9 @@ const TimeLineEvent = ({ item }) => {
   );
 };
 
-const TimelineList = ({ timelineItems }) => {
+const TimelineList = ({ timelineItems, active }) => {
   return (
-    <Toggle>
+    <Toggle open={active}>
       <Timeline>
         {timelineItems?.length > 0 ? (
           timelineItems.map((item, index) => (
@@ -111,6 +111,6 @@ export default ({ incident }) => {
     }
   }, [incident]);
 
-  return <TimelineList timelineItems={data} />;
+  return <TimelineList timelineItems={data} active={!incident.closed_at} />;
   //   return <>{JSON.stringify(data)}</>;
 };
