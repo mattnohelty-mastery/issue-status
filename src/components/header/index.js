@@ -22,7 +22,7 @@ const Title = styled.h1`
   align-self: center;
   margin-left: -118px;
   text-align: center;
-  letter-spacing: 5px;
+  letter-spacing: 1px;
   line-height: 1.2em;
 `;
 
