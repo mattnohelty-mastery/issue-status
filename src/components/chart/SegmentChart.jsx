@@ -35,6 +35,7 @@ const Segment = ({ segment, index }) => {
       incidentStr = `<div>No Incident</div>`;
     } else {
       incidentStr = incidents
+        .slice(0, 5)
         .map((incident) => {
           return `<div>${incident.title}</div>`;
         })
