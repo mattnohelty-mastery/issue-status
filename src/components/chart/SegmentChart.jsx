@@ -29,19 +29,18 @@ const IncidentSegmentInner = styled.div`
 
 const Segment = ({ segment, index }) => {
   const formatIncidents = (incidents) => {
+    const init = `<div>${new Date(segment.date).toDateString()}</div><br />`;
+    let incidentStr = "";
     if (!segment.incidents.length) {
-      return `<div>${new Date(
-        segment.date
-      ).toDateString()}</div><div>No Incident</div>`;
+      incidentStr = `<div>No Incident</div>`;
     } else {
-      return incidents
+      incidentStr = incidents
         .map((incident) => {
-          return `<div>${new Date(segment.date).toDateString()}</div><div>${
-            incident.title
-          }</div>`;
+          return `<div>${incident.title}</div>`;
         })
         .join("<br />");
     }
+    return `${init}${incidentStr}`;
   };
   const tooltip = formatIncidents(segment.incidents);
   return (
