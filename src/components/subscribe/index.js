@@ -66,7 +66,9 @@ export default () => {
       const baseUrl =
         process.env.REACT_APP_NOTIFICATION_SERVICE_BASEURL ??
         "http://localhost";
-      const response = await axios.put(`${baseUrl}/${endpoint}?email=${email}`);
+      const response = await axios.put(
+        `${baseUrl}/${resourcePath}?email=${email}`
+      );
       toast.success("Subscription Updated");
       console.log(response);
     } catch (err) {
