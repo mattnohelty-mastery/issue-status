@@ -6,6 +6,9 @@ import toast, { Toaster } from "react-hot-toast";
 const FlexBox = styled.div`
   margin: 32px auto 0 auto;
   max-width: 1040px;
+  justify-content: center;
+  display: flex;
+  align-items: center;
 `;
 
 const Label = styled.label`

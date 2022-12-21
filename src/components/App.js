@@ -8,6 +8,7 @@ import Components from "./components";
 import Incidents from "./incidents";
 import Footer from "./footer";
 import Subscribe from "./subscribe";
+import Chart from "./chart";
 
 const Container = styled.div`
   max-width: 1008px;
@@ -30,12 +31,8 @@ export default () => {
     componentsResults,
     componentsRefetch,
   ] = useIssues("component");
-  const [
-    incidentsLoading,
-    incidentsError,
-    incidentsResults,
-    incidentsRefetch,
-  ] = useIssues("incident");
+  const [incidentsLoading, incidentsError, incidentsResults, incidentsRefetch] =
+    useIssues("incident");
 
   return (
     <>
@@ -60,6 +57,7 @@ export default () => {
           />
         </ComponentsContainer>
         <Incidents loading={incidentsLoading} incidents={incidentsResults} />
+        <Chart loading={incidentsLoading} incidents={incidentsResults} />
         <Footer />
         <Subscribe />
       </Container>

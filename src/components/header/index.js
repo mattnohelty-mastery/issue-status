@@ -1,25 +1,28 @@
 import React from "react";
 import styled from "styled-components";
 
-const Title = styled.h1`
-  text-align: center;
-  margin-top: 0;
-  margin-bottom: 0;
-  color: white;
-  font-weight: normal;
-  font-size: 28px;
-`;
-
-const Logo = styled.img`
-  float: left;
-`;
-
-const Header = styled.div`
-  text-align: center;
+const Header = styled.header`
   margin-bottom: 16px;
   background-color: black;
   height: 30px;
   padding: 10px;
+  display: flex;
+`;
+
+const Logo = styled.img`
+  align-self: flex-start;
+`;
+
+const Title = styled.h1`
+  width: 100%;
+  color: white;
+  font-weight: normal;
+  font-size: 28px;
+  align-self: center;
+  margin-left: -118px;
+  text-align: center;
+  letter-spacing: 5px;
+  line-height: 1.2em;
 `;
 
 export default () =>
