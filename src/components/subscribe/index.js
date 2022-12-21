@@ -63,9 +63,10 @@ export default () => {
 
     const resourcePath = isSubscribe ? "subscribe" : "unsubscribe";
     try {
-      const response = await axios.put(
-        `${process.env.REACT_APP_API_BASE_URL}${resourcePath}?email=${email}`
-      );
+      const baseUrl =
+        process.env.REACT_APP_NOTIFICATION_SERVICE_BASEURL ??
+        "http://localhost";
+      const response = await axios.put(`${baseUrl}/${endpoint}?email=${email}`);
       toast.success("Subscription Updated");
       console.log(response);
     } catch (err) {
