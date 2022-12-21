@@ -106,7 +106,7 @@ export default () => {
         <Button primary onClick={() => handleSubscribeClick(true)}>
           Subscribe
         </Button>
-        <Button onClick={() => handleSubscribeClick(false)}>Unsubscribe</Button>
+        {/* <Button onClick={() => handleSubscribeClick(false)}>Unsubscribe</Button> */}
       </FlexBox>
     </>
   );
