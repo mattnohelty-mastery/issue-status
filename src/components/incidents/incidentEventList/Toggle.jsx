@@ -3,6 +3,8 @@ import styled from "styled-components";
 
 const ToggleIcon = styled.div`
   cursor: pointer;
+  font-size: 13px;
+  color: #678;
 `;
 
 const Toggle = ({ children, open = false }) => {
@@ -14,7 +16,7 @@ const Toggle = ({ children, open = false }) => {
         onClick={() => setIsActive(!isActive)}
         title={isActive ? "close" : "open"}
       >
-        {isActive ? "-" : "+"}
+        {isActive ? "- hide events" : "+ show events"}
       </ToggleIcon>
       {isActive && children}
     </>

@@ -11,65 +11,72 @@ const Timeline = styled.div`
   &::after {
     content: "";
     position: absolute;
-    width: 6px;
-    background-color: #eee;
-    top: 0;
+    width: 5px;
+    background-color: #f7f8f9;
+    top: 4px;
     bottom: 0;
-    left: 0;
-    margin-left: -3px;
+    left: 10px;
   }
 `;
 
 const Container = styled.div`
   font-size: 13px;
-  left: 0;
+  left: -11px;
   padding: 0px 15px;
   position: relative;
   background-color: inherit;
-  /*width: 50%;*/
   &::after {
     content: "";
     position: absolute;
     width: 10px;
     height: 10px;
-    /*right: -17px;*/
     background-color: white;
     border: 4px solid #b25d42;
-    top: 3px;
+    top: 1px;
     border-radius: 50%;
     z-index: 1;
-  }
-  &::before {
-    content: " ";
-    height: 0;
-    position: absolute;
-    top: 22px;
-    width: 0;
-    z-index: 1;
-    /*right: 30px;*/
-    border: medium solid white;
-    border-width: 10px 0 10px 10px;
-    border-color: transparent transparent transparent white;
   }
 `;
 
 const Content = styled.div`
-  padding: 0px 30px;
-  background-color: white;
+  padding: 5px 30px;
+  background-color: #f7f8f9;
   position: relative;
-  border-radius: 6px;
+  border-radius: 10px;
+  margin: 10px 0;
+  display: flex;
+  justify-content: space-between;
 `;
 
 const DateTime = styled.p`
   color: #777;
+  margin: 0;
+  padding-bottom: 5px;
 `;
+
+const Title = styled.p`
+  padding-top: 2px;
+  margin: 0;
+  text-transform: capitalize;
+`;
+
+const formatTitle = (item) => {
+  switch (item.event) {
+    case "labeled":
+      return `labled: ${item.label?.name}`;
+    case "commented":
+      return `commented: "${item.body}"`;
+    default:
+      return item.event;
+  }
+};
 
 const TimeLineEvent = ({ item }) => {
   return (
     <Container>
       <Content>
-        <p>{item.event}</p>
-        <DateTime>{new Date(item.created_at).toUTCString()}</DateTime>
+        <Title>{formatTitle(item)}</Title>
+        <DateTime>{new Date(item.created_at).toLocaleString()}</DateTime>
       </Content>
     </Container>
   );
