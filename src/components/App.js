@@ -3,8 +3,10 @@ import "./App.css";
 import styled from "styled-components";
 import Status from "./status";
 import useIssues from "./useIssues";
+import useServices from "./useServices";
 import Header from "./header";
 import Components from "./components";
+import Services from "./services";
 import Incidents from "./incidents";
 import Footer from "./footer";
 import Subscribe from "./subscribe";
@@ -54,20 +56,42 @@ export default () => {
     componentsResults,
     componentsRefetch,
   ] = useIssues("component");
-  const [incidentsLoading, incidentsError, incidentsResults, incidentsRefetch] =
-    useIssues("incident");
+
+  const [
+    incidentsLoading,
+    incidentsError,
+    incidentsResults,
+    incidentsRefetch
+  ] = useIssues("incident");
+
+  const [
+    servicesLoading,
+    servicesError,
+    servicesResults
+  ] = useServices();
 
   const [activeIncidents, inactiveIncidents] =
     processIncidents(incidentsResults);
 
   const [showHistory, setShowHistory] = useState(false);
 
+  const hardCodedServices = [
+    {
+      "status": "Operational",
+      "component": "canvas-api"
+    },
+    {
+      "status": "Operational",
+      "component": "minion-api"
+    }
+  ]
+
   return (
     <>
       <Header />
       <Container>
         <ComponentsContainer>
-          <Status
+          {/* <Status
             loading={componentsLoading || incidentsLoading}
             error={{
               hasError: componentsError || incidentsError,
@@ -78,11 +102,26 @@ export default () => {
               componentsRefetch();
               incidentsRefetch();
             }}
-          />
-          <Components
+          /> */}
+          <h2>Summary</h2>
+          Operational: {hardCodedServices.filter(service => { return service.status === "Operational" })?.length}
+          <br />
+          Degraded: {hardCodedServices.filter(service => { return service.status === "Degraded" })?.length}
+          <br />
+          Offline: {hardCodedServices.filter(service => { return service.status === "Offline" })?.length}
+          <br />
+          Total: {hardCodedServices?.length}
+          {/* <Components
             loading={componentsLoading}
             components={componentsResults}
+          /> */}
+          <br />
+          <h2>Services</h2>
+          <Services
+            loading={servicesLoading}
+            services={servicesResults}
           />
+
         </ComponentsContainer>
         <Chart loading={incidentsLoading} incidents={incidentsResults} />
         <Incidents
