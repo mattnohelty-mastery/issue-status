@@ -100,17 +100,18 @@ export default () => {
           Offline: {servicesResults.filter(service => { return service.status === "Offline" })?.length}
           <br />
           Total: {servicesResults?.length}
-          {/* <Components
-            loading={componentsLoading}
-            components={componentsResults}
-          /> */}
+
           <br />
-          <h2>Services</h2>
+          <h2>Components</h2>
           <Services
             loading={servicesLoading}
             services={servicesResults}
           />
-
+          <h2>Domains</h2>
+          <Components
+            loading={componentsLoading}
+            components={componentsResults}
+          />
         </ComponentsContainer>
         <Chart loading={incidentsLoading} incidents={incidentsResults} />
         <Incidents

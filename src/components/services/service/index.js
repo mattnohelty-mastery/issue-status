@@ -22,6 +22,7 @@ const ServiceHeader = styled.div`
   align-items: center;
   display: flex;
   flex-direction: row;
+  cursor: pointer;
 `;
 
 const ServiceBody = styled.div`
@@ -39,10 +40,12 @@ const PodHeader = styled.div`
   justify-content: space-between;
   align-items: center;
   display: flex;
+  cursor: pointer;
 `;
 
 const PodLabel = styled.div`
-  padding: 8px 0px;
+  padding: 12px 0px 2px 0px;
+  font-size: 14px;
 `;
 
 const PodBody = styled.div`
@@ -88,10 +91,10 @@ export default ({ service }) => {
                 </PodHeader>
               } transitionTime="200">
                 <PodBody>
-                  Version: {pod.version}
                   <ul>
-                    <li>Started at: {pod.startedAt}</li>
-                    <li>Stopped at: {pod.stoppedAt || '--'}</li>
+                    <li>Version: {pod.version}</li>
+                    <li>Pod started at: {pod.startedAt}</li>
+                    <li>Pod stopped at: {pod.stoppedAt || '--'}</li>
                     <li>ID: {pod.id}</li>
                   </ul>
                 </PodBody>

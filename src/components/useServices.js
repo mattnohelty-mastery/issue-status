@@ -9,7 +9,6 @@ export default () => {
     fetch(`http://localhost:5555/component`)
       .then(response => response.json())
       .then(data => {
-        console.log(data);
         setError();
         setLoading(false);
         setResults(data);
