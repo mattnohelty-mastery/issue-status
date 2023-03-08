@@ -1,6 +1,6 @@
 import React from "react";
-import Skeleton from "./skeleton";
 import Service from "./service";
+import Skeleton from "./skeleton";
 import useDidMount from "../useDidMount";
 
 const sortComponents = (a, b) => {
@@ -11,16 +11,16 @@ const sortComponents = (a, b) => {
     return 1;
   }
   return 0;
-}
+};
 
 export default ({ loading, services }) => {
   const [hasMounted] = useDidMount();
 
   return !loading || hasMounted ? (
     services?.length > 0 ? (
-      services?.sort(sortComponents).map((service, i) => (
-        <Service key={i} service={service} />
-      ))
+      services
+        ?.sort(sortComponents)
+        .map((service) => <Service key={service.component} service={service} />)
     ) : (
       <p>Loading.. or no services found. Hard to tell.</p>
     )

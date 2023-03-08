@@ -1,16 +1,19 @@
-import React, { useState } from "react";
 import "./App.css";
-import styled from "styled-components";
+
+import React, { useState } from "react";
+
+import Chart from "./chart";
+import ClusterSummary from "./clustersummary";
+import Components from "./components";
+import Footer from "./footer";
+import Header from "./header";
+import Incidents from "./incidents";
+import Services from "./services";
 import Status from "./status";
+import Subscribe from "./subscribe";
+import styled from "styled-components";
 import useIssues from "./useIssues";
 import useServices from "./useServices";
-import Header from "./header";
-import Components from "./components";
-import Services from "./services";
-import Incidents from "./incidents";
-import Footer from "./footer";
-import Subscribe from "./subscribe";
-import Chart from "./chart";
 
 const Container = styled.div`
   max-width: 1008px;
@@ -57,18 +60,10 @@ export default () => {
     componentsRefetch,
   ] = useIssues("component");
 
-  const [
-    incidentsLoading,
-    incidentsError,
-    incidentsResults,
-    incidentsRefetch
-  ] = useIssues("incident");
+  const [incidentsLoading, incidentsError, incidentsResults, incidentsRefetch] =
+    useIssues("incident");
 
-  const [
-    servicesLoading,
-    servicesError,
-    servicesResults
-  ] = useServices();
+  const [servicesLoading, servicesError, servicesResults] = useServices();
 
   const [activeIncidents, inactiveIncidents] =
     processIncidents(incidentsResults);
@@ -92,26 +87,6 @@ export default () => {
               incidentsRefetch();
             }}
           /> */}
-          <h2>Summary</h2>
-          Operational: {servicesResults.filter(service => { return service.status === "Operational" })?.length}
-          <br />
-          Degraded: {servicesResults.filter(service => { return service.status === "Degraded" })?.length}
-          <br />
-          Offline: {servicesResults.filter(service => { return service.status === "Offline" })?.length}
-          <br />
-          Total: {servicesResults?.length}
-
-          <br />
-          <h2>Components</h2>
-          <Services
-            loading={servicesLoading}
-            services={servicesResults}
-          />
-          <h2>Domains</h2>
-          <Components
-            loading={componentsLoading}
-            components={componentsResults}
-          />
         </ComponentsContainer>
         <Chart loading={incidentsLoading} incidents={incidentsResults} />
         <Incidents
