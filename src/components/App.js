@@ -87,6 +87,14 @@ export default () => {
               incidentsRefetch();
             }}
           /> */}
+          <ClusterSummary services={servicesResults} />
+          <h2>Components</h2>
+          <Services loading={servicesLoading} services={servicesResults} />
+          <h2>Domains</h2>
+          <Components
+            loading={componentsLoading}
+            components={componentsResults}
+          />
         </ComponentsContainer>
         <Chart loading={incidentsLoading} incidents={incidentsResults} />
         <Incidents
