@@ -53,18 +53,31 @@ const ChartContainer = styled.div`
   //   width: 80vw;
 `;
 
-export default (servicesResults) => {
+export default (props) => {
+  const serviceResults = props.services;
   const [hasMounted] = useDidMount();
+
+  const operationalServices = serviceResults.filter((service) => {
+    return service.status === "Operational";
+  });
+
+  const degradedServices = serviceResults.filter((service) => {
+    return service.status === "Degraded";
+  });
+
+  const offlineServices = serviceResults.filter((service) => {
+    return service.status === "Offline";
+  });
 
   return (
     <>
       <h2>Summary</h2>
       <SummaryContainer>
         <OverviewContainer>
-          <p>Operational: 0</p>
-          <p>Degraded: 0</p>
-          <p>Offline: 0</p>
-          <p>Total: 0</p>
+          <p>Operational: {operationalServices?.length ?? 0}</p>
+          <p>Degraded: {degradedServices?.length ?? 0}</p>
+          <p>Offline: {offlineServices?.length ?? 0}</p>
+          <p>Total: {serviceResults?.length ?? 0}</p>
         </OverviewContainer>
         <ChartContainer>
           <Doughnut
@@ -76,7 +89,11 @@ export default (servicesResults) => {
               datasets: [
                 {
                   label: "Cluster Pod Overview",
-                  data: [300, 50, 100],
+                  data: [
+                    operationalServices?.length ?? 0,
+                    degradedServices?.length ?? 0,
+                    offlineServices?.length ?? 0,
+                  ],
                   backgroundColor: ["#247234", "#74582a", "#8e3b31"],
                   hoverOffset: 4,
                 },
