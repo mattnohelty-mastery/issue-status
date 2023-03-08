@@ -18,11 +18,11 @@ export default ({ loading, services }) => {
 
   return !loading || hasMounted ? (
     services?.length > 0 ? (
-      services?.sort(sortComponents).map((service) => (
-        <Service key={service.component} service={service} />
+      services?.sort(sortComponents).map((service, i) => (
+        <Service key={i} service={service} />
       ))
     ) : (
-      <p>No Services found.</p>
+      <p>Loading.. or no services found. Hard to tell.</p>
     )
   ) : (
     <>

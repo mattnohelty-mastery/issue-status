@@ -1,15 +1,15 @@
 import { useState, useEffect } from "react";
 
-export default () => {
+
+export default (component) => {
   const [results, setResults] = useState([]);
   const [error, setError] = useState();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`http://localhost:5555/component`)
+    fetch(`http://localhost:5555/component/${component}`)
       .then(response => response.json())
       .then(data => {
-        console.log(data);
         setError();
         setLoading(false);
         setResults(data);

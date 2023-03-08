@@ -75,17 +75,6 @@ export default () => {
 
   const [showHistory, setShowHistory] = useState(false);
 
-  const hardCodedServices = [
-    {
-      "status": "Operational",
-      "component": "canvas-api"
-    },
-    {
-      "status": "Operational",
-      "component": "minion-api"
-    }
-  ]
-
   return (
     <>
       <Header />
@@ -104,13 +93,13 @@ export default () => {
             }}
           /> */}
           <h2>Summary</h2>
-          Operational: {hardCodedServices.filter(service => { return service.status === "Operational" })?.length}
+          Operational: {servicesResults.filter(service => { return service.status === "Operational" })?.length}
           <br />
-          Degraded: {hardCodedServices.filter(service => { return service.status === "Degraded" })?.length}
+          Degraded: {servicesResults.filter(service => { return service.status === "Degraded" })?.length}
           <br />
-          Offline: {hardCodedServices.filter(service => { return service.status === "Offline" })?.length}
+          Offline: {servicesResults.filter(service => { return service.status === "Offline" })?.length}
           <br />
-          Total: {hardCodedServices?.length}
+          Total: {servicesResults?.length}
           {/* <Components
             loading={componentsLoading}
             components={componentsResults}
